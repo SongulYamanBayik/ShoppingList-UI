@@ -47,6 +47,9 @@ namespace ShoppingList_UI.Controllers
         {
             productAddDto.NormalizedName = productAddDto.Name.ToUpper();
 
+            
+            
+            
             Product product = _mapper.Map<Product>(productAddDto);
 
 
@@ -86,13 +89,20 @@ namespace ShoppingList_UI.Controllers
             return RedirectToAction("Index");
         }
         [HttpGet]
-        public IActionResult EditeProduct(int id)
+        public IActionResult EditProduct(int id)
         {
-            var values = productManager.TGetByID(id);
-            return View(values);
+            ViewBag.SelectListCategory = context.Categories.ToList().Select(x => new SelectListItem
+            {
+                Text = x.Name,
+                Value = x.ID.ToString()
+            }).ToList();
+
+            var product = _mapper.Map<ProductUpdateDto>(productManager.TGetByID(id));
+
+            return View(product);
         }
         [HttpPost]
-        public IActionResult EditeProduct(ProductUpdateDto productUpdateDto)
+        public IActionResult EditProduct(ProductUpdateDto productUpdateDto)
         {
             Product product = _mapper.Map<Product>(productUpdateDto);
 

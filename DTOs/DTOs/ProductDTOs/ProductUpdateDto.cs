@@ -13,6 +13,7 @@ namespace DTO.DTOs.ProductDTOs
         public string Name { get; set; }
         public string ImageUrl { get; set; }
         public bool Status { get; set; }
-        public List<Category> Categories { get; set; }
+        public int CategoryId { get; set; }
+
     }
 }
