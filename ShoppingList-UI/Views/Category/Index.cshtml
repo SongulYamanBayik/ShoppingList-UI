@@ -1,0 +1,65 @@
+﻿@model List<Shoppinglist_EntityLayer.Concrete.Category>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@{
+    int sayac = 0;
+}
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Kategoriler</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item" placeHolder="Kategori Ekle">
+                            <a href="/Category/AddCategory/" class="nav-link">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <section class="content">
+        <div class="card card-solid">
+            <div class="card-body pb-0">
+
+                <table class="table table-bordered">
+                    <tr>
+                        <th>#</th>
+                        <th>Kategori Adı</th>
+                        <th>Durumu</th>
+                        <th>Sil</th>
+                        <th>Güncelle</th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        sayac++;
+                        <tr>
+                            <th>@sayac</th>
+                            <td>@item.Name</td>
+
+                            @if (item.Status)
+                            {
+                                <td>Aktif</td>
+                            }
+                            else
+                            {
+                                <td>Pasif</td>
+                            }
+                            <td><a href="/Category/DeleteCategory/@item.ID" class="btn btn-danger">Sil</a></td>
+                            <td><a href="/Category/EditCategorye/@item.ID" class="btn btn-success">Güncelle</a></td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+

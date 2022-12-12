@@ -30,7 +30,7 @@ namespace ShoppingList_UI.Controllers
             return View(values);
         }
         [HttpGet]
-        public IActionResult Add()
+        public IActionResult AddProduct()
         {
 
             ViewBag.SelectListCategory = context.Categories.ToList().Select(x => new SelectListItem
@@ -43,12 +43,10 @@ namespace ShoppingList_UI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(ProductAddDto productAddDto)
+        public IActionResult AddProduct(ProductAddDto productAddDto)
         {
             productAddDto.NormalizedName = productAddDto.Name.ToUpper();
 
-            
-            
             
             Product product = _mapper.Map<Product>(productAddDto);
 
