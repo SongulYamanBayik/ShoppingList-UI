@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shoppinglist_BusinessLayer.ValidationRules
+namespace Shoppinglist_BusinessLayer.ValidationRules.ToDoListValidator
 {
     internal class ToDoListValidator
     {

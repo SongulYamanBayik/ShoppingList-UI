@@ -1,7 +1,11 @@
-﻿using FluentValidation.Results;
+﻿using AutoMapper;
+using DTO.DTOs.ProductDTOs;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Shoppinglist_BusinessLayer.Concrete;
-using Shoppinglist_BusinessLayer.ValidationRules;
+using Shoppinglist_BusinessLayer.ValidationRules.ProductValidator;
+using Shoppinglist_BusinessLayer.ValidationRules.ProductValidator.ProductValidator;
 using Shoppinglist_DAL.Concrete;
 using Shoppinglist_DAL.EntityFramework;
 using Shoppinglist_EntityLayer.Concrete;
@@ -10,9 +14,16 @@ namespace ShoppingList_UI.Controllers
 {
     public class ProductController : Controller
     {
+        private readonly IMapper _mapper;
         ProductManager productManager = new ProductManager(new EFProductDal());
 
         Context context = new Context();
+
+        public ProductController(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
+
         public IActionResult Index()
         {
             var values = productManager.TList();
@@ -21,16 +32,26 @@ namespace ShoppingList_UI.Controllers
         [HttpGet]
         public IActionResult Add()
         {
+
+            ViewBag.SelectListCategory = context.Categories.ToList().Select(x => new SelectListItem
+            {
+                Text = x.Name,
+                Value = x.ID.ToString()
+            }).ToList();
+
             return View();
         }
 
         [HttpPost]
-        public IActionResult Add(Product product)
+        public IActionResult Add(ProductAddDto productAddDto)
         {
-            product.NormalizedName = product.Name.ToUpper();
+            productAddDto.NormalizedName = productAddDto.Name.ToUpper();
 
-            ProductValidator validationRules = new ProductValidator();
-            ValidationResult result = validationRules.Validate(product);
+            Product product = _mapper.Map<Product>(productAddDto);
+
+
+            ProductAddValidator validationRules = new ProductAddValidator();
+            ValidationResult result = validationRules.Validate(productAddDto);
 
             if (result.IsValid)
             {
@@ -71,10 +92,12 @@ namespace ShoppingList_UI.Controllers
             return View(values);
         }
         [HttpPost]
-        public IActionResult EditeProduct(Product product)
+        public IActionResult EditeProduct(ProductUpdateDto productUpdateDto)
         {
+            Product product = _mapper.Map<Product>(productUpdateDto);
+
             ProductUpdateValidator validationRules = new ProductUpdateValidator();
-            ValidationResult result = validationRules.Validate(product);
+            ValidationResult result = validationRules.Validate(productUpdateDto);
 
             if (result.IsValid)
             {

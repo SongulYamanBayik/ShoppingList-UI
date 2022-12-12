@@ -1,6 +1,11 @@
+using AutoMapper;
+using Microsoft.AspNetCore.Hosting;
+using System.Xml.Linq;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using DTO.DTOs.ProductDTOs;
+using FluentValidation;
 using Shoppinglist_DAL.Concrete;
 using Shoppinglist_EntityLayer.Concrete;
 using System;
@@ -8,19 +9,19 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shoppinglist_BusinessLayer.ValidationRules
+namespace Shoppinglist_BusinessLayer.ValidationRules.ProductValidator.ProductValidator
 {
-    public class ProductUpdateValidator : AbstractValidator<Product>
+    public class ProductUpdateValidator : AbstractValidator<ProductUpdateDto>
     {
         Context context = new Context();
 
-        private bool BeUniqueCategoryAndCaption(Product model, string name)
+        private bool BeUniqueCategoryAndCaption(ProductUpdateDto model, string name)
         {
             var result = context.Products.Where(x => x.ID == model.ID & x.NormalizedName == model.Name.ToUpper()).ToList().Any();
-            if (!result) 
+            if (!result)
             {
                 result = !context.Products.Where(x => x.NormalizedName == name.ToUpper()).ToList().Any();
-                
+
             }
             return result;
         }
