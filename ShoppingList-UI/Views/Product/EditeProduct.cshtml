@@ -1,0 +1,35 @@
+﻿@model Shoppinglist_EntityLayer.Concrete.Product
+@{
+    Layout = null;
+}
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.rtl.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+<!DOCTYPE html>
+<div class="container col-10" style="margin-top:40px">
+
+    @using (Html.BeginForm("EditeProduct", "Product", FormMethod.Post))
+    {
+        @Html.HiddenFor(x => x.ID)
+        @Html.Label("Ürün Adı")
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Name,"", new { @class = "text-danger" })
+        <br />
+        @Html.Label("Resim")
+        @Html.TextAreaFor(x => x.ImageUrl, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.ImageUrl,"", new { @class = "text-danger" })
+        <br />
+        @Html.Label("Status")
+        @Html.TextAreaFor(x => x.Status, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Status,"", new { @class = "text-danger" })
+        <br />
+        @Html.Label("Kategori")
+        @Html.TextAreaFor(x => x.CategoryID, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CategoryID,"", new { @class = "text-danger" })
+        <br />
+        <button class="btn btn-info mt-3" type="submit">Kaydet</button>
+
+    }
+</div>
