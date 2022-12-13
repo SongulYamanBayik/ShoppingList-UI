@@ -1,0 +1,44 @@
+﻿@model Shoppinglist_EntityLayer.Concrete.Category
+@{
+    ViewData["Title"] = "EditCategory";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Kategori Güncelle</h1>
+                </div>
+                <div class="col-sm-6">
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <section class="content p-2">
+        <div class="container col-10" style="margin-top:10px">
+            @using (Html.BeginForm("EditCategory", "Category", FormMethod.Post))
+            {
+                @Html.HiddenFor(x => x.ID)
+                @Html.Label("Kategori Adı")
+                @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Name,"", new { @class = "text-danger" })
+                <br />
+                @Html.Label("Durum")
+                <div>
+                    <label>
+                        @Html.CheckBoxFor(x=>x.Status, new { Style = "vertical-align:3px}" }) Aktif
+                    </label>
+                </div>
+                @Html.ValidationMessageFor(x => x.Status,"", new { @class = "text-danger" })
+
+                <br />
+                <button class="btn btn-info mt-3" type="submit">Kaydet</button>
+
+            }
+        </div>
+
+    </section>
+</div>
+

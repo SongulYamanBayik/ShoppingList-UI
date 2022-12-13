@@ -35,7 +35,6 @@
                         <th>#</th>
                         <th>Kategori Adı</th>
                         <th>Durumu</th>
-                        <th>Sil</th>
                         <th>Güncelle</th>
                     </tr>
                     @foreach (var item in Model)
@@ -44,17 +43,19 @@
                         <tr>
                             <th>@sayac</th>
                             <td>@item.Name</td>
+                            <td>
+                                @if (item.Status)
+                                {
+                                    <a href="/Category/PassiveCategory/@item.ID" class="btn btn-success">Pasif et</a>
 
-                            @if (item.Status)
-                            {
-                                <td>Aktif</td>
-                            }
-                            else
-                            {
-                                <td>Pasif</td>
-                            }
-                            <td><a href="/Category/DeleteCategory/@item.ID" class="btn btn-danger">Sil</a></td>
-                            <td><a href="/Category/EditCategorye/@item.ID" class="btn btn-success">Güncelle</a></td>
+                                }
+                                else
+                                {
+                                    <a href="/Category/ActiveCategory/@item.ID" class="btn btn-danger">Aktif et</a>
+
+                                }
+                            </td>
+                            <td><a href="/Category/EditCategory/@item.ID" class="btn btn-info">Güncelle</a></td>
                         </tr>
                     }
                 </table>

@@ -29,7 +29,7 @@ namespace Shoppinglist_BusinessLayer.ValidationRules.ProductValidator.ProductVal
         {
             RuleFor(x => x.Name)
             .Must(BeUniqueCategoryAndCaption)
-            .WithMessage("Bu Ürün Adı ile güncel kayıt var.");
+            .WithMessage("Bu ürün adı ile güncel kayıt var.");
 
         }
     }
