@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Shoppinglist_BusinessLayer.Concrete
 {
-    public class ToDoListManager : IGenericService<ToDoList>
+    public class ToDoListManager : IToDoListService
     {
         IToDoListDal _toDoListDal;
 

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DTO.DTOs.ProductDTOs;
+using DTO.DTOs.ProductToDoListDTOs;
 using Shoppinglist_EntityLayer.Concrete;
 
 namespace ShoppingList_UI.Mapping.AutoMapperProfile
@@ -13,6 +14,9 @@ namespace ShoppingList_UI.Mapping.AutoMapperProfile
 
             CreateMap<Product, ProductUpdateDto>();
             CreateMap<ProductUpdateDto, Product>();
+
+            CreateMap<ProductToDoList, ProductToDoListDto>();
+            CreateMap<ProductToDoListDto, ProductToDoList>();
         }
     }
 }
