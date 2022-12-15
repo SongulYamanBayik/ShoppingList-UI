@@ -29,6 +29,7 @@ namespace ShoppingList_UI.Controllers
             var values = productManager.TList();
             return View(values);
         }
+
         [HttpGet]
         public IActionResult AddProduct()
         {

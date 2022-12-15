@@ -18,6 +18,11 @@ namespace Shoppinglist_DAL.Concrete
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>().Navigation(p => p.Category).AutoInclude();
+            modelBuilder.Entity<ProductToDoList>().Navigation(x => x.product).AutoInclude();
+            modelBuilder.Entity<ProductToDoList>().Navigation(x => x.toDoList).AutoInclude();
+            modelBuilder.Entity<ToDoList>().Navigation(x => x.ProductToDoLists).AutoInclude();
+
+
         }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }

@@ -15,8 +15,7 @@ namespace ShoppingList_UI.Mapping.AutoMapperProfile
             CreateMap<Product, ProductUpdateDto>();
             CreateMap<ProductUpdateDto, Product>();
 
-            CreateMap<ProductToDoList, ProductToDoListDto>();
-            CreateMap<ProductToDoListDto, ProductToDoList>();
+
         }
     }
 }

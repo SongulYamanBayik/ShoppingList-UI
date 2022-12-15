@@ -10,7 +10,8 @@ namespace ShoppingList_UI.Controllers
         ToDoListManager toDoListManager = new ToDoListManager(new EFToDoListDal());
         public IActionResult Index()
         {
-            var value = toDoListManager.TList();
+             var value = toDoListManager.TList();
+
             return View(value);
         }
 
@@ -22,6 +23,20 @@ namespace ShoppingList_UI.Controllers
             };
 
             toDoListManager.TInsert(toDoList);
+            return Json(true);
+        }
+
+        public IActionResult DeleteToDoList(int id)
+        {
+            var value = toDoListManager.TGetByID(id);
+            toDoListManager.TDelete(value);
+            return RedirectToAction("Index");
+        }
+
+        public JsonResult UpdateToDoList(int id, string ToDoListName)
+        {
+            var model = toDoListManager.TGetByID(id);
+            model.Name = ToDoListName;
             return Json(true);
         }
 

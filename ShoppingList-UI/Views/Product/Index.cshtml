@@ -1,6 +1,6 @@
 ﻿@model List<Shoppinglist_EntityLayer.Concrete.Product>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Ürünler";
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
 }
 
@@ -15,7 +15,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item" placeHolder="Ürün Ekle">
-                            <a href="/Product/AddProduct/" class="nav-link">
+                            <a href="/Product/AddProduct/" class="btn btn-sm btn-outline-primary">
                                 <i class="fas fa-plus"></i>
                             </a>
                         </li>
@@ -34,7 +34,7 @@
                 <div class="row d-flex align-items-stretch">
                     @foreach (var item in Model)
                     {
-                        <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+                        <div class="col-12 col-sm-6 col-md-2 d-flex align-items-stretch">
                             <div class="card bg-light">
                                 <div class="card-header text-muted border-bottom-0">
                                     <div>
@@ -47,29 +47,31 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <h2 class="lead"><b>@item.Name</b></h2>
-                                            <img src="@item.ImageUrl" alt="" class="img-circle img-fluid" style="height="250px"; width="250px";">
+
+                                                <img src="@item.ImageUrl" alt="" class="img-circle img-fluid" style="height="250px";width="250px";">
 
                                         </div>
 
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <div class="text-right">
+                                    
+                                        <div class="row">
                                         @if (!item.Status)
                                         {
-                                            <a href="/Product/ActivateProduct/@item.ID" class="btn btn-sm btn-success">
+                                            <a href="/Product/ActivateProduct/@item.ID" class="btn btn-sm btn-success m-1">
                                                 Aktif et
                                             </a>
                                         }else
                                         {
-                                            <a href="/Product/DeleteProduct/@item.ID" class="btn btn-sm btn-danger">
+                                            <a href="/Product/DeleteProduct/@item.ID" class="btn btn-sm btn-danger m-1">
                                               Pasif et
                                             </a>  
                                         }
-                                        <a href="/Product/EditProduct/@item.ID" class="btn btn-sm btn-primary">
+                                        <a href="/Product/EditProduct/@item.ID" class="btn btn-sm btn-primary m-1">
                                             Güncelle
                                         </a>
-                                    </div>
+                                        </div>
                                 </div>
                             </div>
                         </div>

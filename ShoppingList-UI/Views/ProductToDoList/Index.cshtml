@@ -1,0 +1,74 @@
+﻿@model DTO.DTOs.ProductToDoListDTOs.ProductToDoListDto
+@{
+    ViewData["Title"] = "Liste Detay";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<style>
+
+
+    .page {
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+    }
+
+    .sidebar {
+        flex: 1;
+        border: solid black 1px;
+        height: 100%;
+    }
+
+    .content {
+        flex: 4;
+        border: solid black 1px;
+        height: 100%;
+    }
+</style>
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Ürünler</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        @*<li class="breadcrumb-item" placeHolder="Ürün Ekle">
+                        <a href="/Product/AddProduct/" class="btn btn-sm btn-outline-primary">
+                        <i class="fas fa-plus"></i>
+                        </a>
+                        </li>*@
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+ <section class="content">
+
+        <div class="page">
+            <div class="sidebar">
+                
+            </div>
+            <div class="content">
+                <div class="container">
+                    <div class="row">
+                        <nav class="navbar navbar-default">
+                            <div class="container-fluid">
+                                
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</section>
+</div>

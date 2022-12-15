@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shoppinglist_EntityLayer.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,8 @@ namespace DTO.DTOs.ProductToDoListDTOs
 {
     public class ProductToDoListDto
     {
-        public string ProductName { get; set; }
-        public string ToDoListName { get; set; }
-        public string Description { get; set; }
+        public List<Product> products { get; set; }
+        public List<ProductToDoList> selectedListItems { get; set; }
+
     }
 }

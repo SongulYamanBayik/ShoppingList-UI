@@ -1,11 +1,12 @@
 ﻿@model List<Shoppinglist_EntityLayer.Concrete.ToDoList>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Listelerim";
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
 }
-
+@{
+    int sayac = 0;
+}
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -17,10 +18,9 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item">
-                            <a id="btnAdd" class="btn btn-sm btn-outline-primary" onclick="showAddCategoryModal()">
+                            <a id="btnAdd" class="btn btn-sm btn-outline-primary" onclick="showAddToDoListModal()">
                                 <i class="fas fa-plus"></i>
                             </a>
-                            @*<button type="button" class="btn btn-success fas fa-plus " id="btnAdd" > Yeni Liste Ekle</button>*@
 
                         </li>
                     </ol>
@@ -28,72 +28,113 @@
             </div>
         </div><!-- /.container-fluid -->
     </section>
-
-    <!-- Main content -->
-    <section class="content">
-
-        <!-- Default box -->
-        <div class="card card-solid">
-            <div class="card-body pb-0">
-                <div class="row d-flex align-items-stretch">
-                    @foreach (var item in Model)
-                    {
-                        <div class="col d-flex align-items-stretch">
-                            <div class="card bg-light">
-                                <div class="card-header text-muted border-bottom-0">
-                                    @*<div>
-                                @item.Category.Name
-
-                                </div>*@
-                                </div>
-
-                                <div class="card-body pt-0">
-                                    <a href="/ProductToDoList/Index/@item.ID">
-
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h2 class="lead"><b>@item.Name</b></h2>
-                                                @*<img src="@item.ImageUrl" alt="" class="img-circle img-fluid" style="height=" 250px"; width="250px" ;">*@
-
-                                            </div>
-
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="text-right">
-                                        @*@if (!item.Status)
-                                    {
-                                    <a href="/Product/ActivateProduct/@item.ID" class="btn btn-sm btn-success">
-                                    Aktif et
-                                    </a>
-                                    }
-                                    else
-                                    {
-                                    <a href="/Product/DeleteProduct/@item.ID" class="btn btn-sm btn-danger">
-                                    Pasif et
-                                    </a>
-                                    }*@
-                                        <a href="/ToDoList/EditToDoList/@item.ID" class="btn btn-sm btn-primary">
-                                            Güncelle
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-
+@foreach (var item in Model)
+    {
+        sayac = 0;
+        <div class="card collapsed-card">
+            <div class="card-header">
+                <h3 class="card-title">@item.Name</h3>
+                @*<a onclick="showUpdateToDoListModel(id,ToDoListName)">*@
+                <a href="/ToDoList/EditToDoList/@item.ID" class="btn btn-tool">
+                    <i class="fas fa-pen"></i>
+                 </a>
+                
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <a href="/ProductToDoList/Index/@item.ID" class="btn btn-tool">
+                        <i class="fas fa-plus"></i>
+                    </a>
+                   @* <button type="button" href="/ToDoList/DeleteToDoList/" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                        <i class="fas fa-times"></i>
+                    </button>*@
+                    <a href="/ToDoList/DeleteToDoList/@item.ID" class="btn btn-tool">
+                       <i class="fas fa-times"></i>
+                    </a>
                 </div>
             </div>
+            <div class="card-body p-0" style="display: none;">
+                <table class="table table-striped projects">
+                    <thead>
+                        <tr>
+                            <th style="width: 1%">
+                                #
+                            </th>
+                            <th style="width: 20%">
+                                Ürün Adı
+                            </th>
+                            <th style="width: 30%">
+                                Ürün Görsel
+                            </th>
+                            <th>
+                                Not
+                            </th>
+                            <th style="width: 30%">
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var prod in @item.ProductToDoLists)
+                        {
+                            sayac++;
+                            <tr>
+                                <td>
+                                    @sayac
+                                </td>
+                                <td>
+                                    <a>
+                                        @prod.product.Name
+                                    </a>
+                                    @*<br>
+                                    <small>
+                                        @prod.Description
+                                    </small>*@
+                                </td>
+                                <td>
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <img alt="Avatar" class="table-avatar" src="@prod.product.ImageUrl">
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td class="project_progress">
+                                    @prod.Description
+                                </td>
+                                <td class="project-actions text-right">
+                                   @* <a class="btn btn-primary btn-sm" href="#">
+                                        <i class="fas fa-folder">
+                                        </i>
+                                        View
+                                    </a>*@
+                                    <a class="btn btn-info btn-sm" href="/ProductToDoList/EditProductToDoList/@prod.ID">
+                                        <i class="fas fa-pencil-alt">
+                                        </i>
+                                        Güncelle
+                                    </a>
+                                    <a class="btn btn-danger btn-sm" href="/ProductToDoList/DeleteProductToDoList/@prod.ID">
+                                        <i class="fas fa-trash">
+                                        </i>
+                                        Sil
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                        
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
         </div>
+    }
 
-    </section>
+
+
 </div>
-
 <script>
 
 
-    function showAddCategoryModal() {
+    function showAddToDoListModal() {
 
         Swal.fire({
             title: 'Yeni Liste Adı Giriniz',
@@ -132,7 +173,46 @@
         })
 
     };
+    function showUpdateToDoListModel(id, ToDoListName) {
 
+        Swal.fire({
+            title: 'Yeni Liste Adı Giriniz',
+            input: 'text',
+            inputAttributes: {
+                autocapitalize: 'off'
+            },
+            showCancelButton: true,
+            cancelButtonText: 'İptal',
+            confirmButtonText: 'Kaydet',
+            showLoaderOnConfirm: true,
+            preConfirm: (login) => {
+                return $.ajax({
+                    contentType: "application/json",
+                    dataType: "json",
+                    type: "Get",
+                    url: "/ToDoList/UpdateToDoList/",
+                    data: {
+                        id:id,
+                        ToDoListName: ToDoListName,
+                    },
+                    success: function (data) {
+
+                        return data.json();
+                    }
+                })
+            },
+            allowOutsideClick: () => !Swal.isLoading()
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    icon: 'success',
+                    title: `Liste ekleme işlemi başarılı.`
+                })
+                setTimeout(() => { location.reload(true) }, 1000);
+            }
+        })
+
+    };
 
 </script>
 

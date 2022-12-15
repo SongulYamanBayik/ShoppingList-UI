@@ -1,0 +1,13 @@
+﻿@model List<Shoppinglist_EntityLayer.Concrete.Product>
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<div class="card-header text-muted border-bottom-0">
+    @foreach (var ii in Model)
+    {
+        <div>
+            @ii.Name
+
+        </div>
+    }
+</div>
