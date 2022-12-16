@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Shoppinglist_EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -8,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Shoppinglist_DAL.Concrete
 {
-    public class Context:DbContext
+    public class Context: IdentityDbContext<AppUser,AppRole,int>
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -17,6 +19,8 @@ namespace Shoppinglist_DAL.Concrete
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Product>().Navigation(p => p.Category).AutoInclude();
             modelBuilder.Entity<ProductToDoList>().Navigation(x => x.product).AutoInclude();
             modelBuilder.Entity<ProductToDoList>().Navigation(x => x.toDoList).AutoInclude();

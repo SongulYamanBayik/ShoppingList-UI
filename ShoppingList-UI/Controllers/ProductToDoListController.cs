@@ -14,6 +14,7 @@ namespace ShoppingList_UI.Controllers
        
         ProductToDoManager productToDoManager = new ProductToDoManager(new EFProductToDoListDal());
         ProductManager productManager = new ProductManager(new EFProductDal());
+        ToDoListManager toDoListManager = new ToDoListManager(new EFToDoListDal());
         Context context = new Context();
 
         public IActionResult Index(int id)
@@ -21,7 +22,8 @@ namespace ShoppingList_UI.Controllers
             ProductToDoListDto productToDoListDto = new ProductToDoListDto()
             {
                 products = productManager.TList(x=> x.Status==true),
-                selectedListItems = productToDoManager.TGetToDoListByListID(x => x.ToDoListID==id)
+                selectedListItems = productToDoManager.TGetToDoListByListID(x => x.ToDoListID==id),
+                toDoLists=toDoListManager.TList(x=>x.ID==id)
             };
 
             return View(productToDoListDto);
