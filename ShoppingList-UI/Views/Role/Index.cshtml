@@ -1,0 +1,42 @@
+﻿@using Shoppinglist_EntityLayer.Concrete;
+@model IEnumerable<AppRole>
+@{
+    ViewData["Title"] = "Create Role";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Rol Listesi</h1>
+                </div>
+                <div class="col-sm-6">
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <section class="content p-2">
+
+<a asp-action="Create" class="btn btn-secondary">Rol Ekle</a>
+
+<table class="table table-sm table-bordered table-bordered">
+    <tr><th>ID</th><th>Rol Adı</th>@*<th>Kullanıcılar</th><th>Güncelle</th><th>Sil</th>*@</tr>
+    @foreach (var role in Model)
+    {
+        <tr>
+            <td>@role.Id</td>
+            <td>@role.Name</td>
+            @*<td i-role="@role.Id"></td>*@
+            @*<td><a class="btn btn-sm btn-primary" asp-action="Update"  asp-route-id="@role.Id">Güncelle</a></td>*@
+            @*<td>
+                <form asp-action="Delete" asp-route-id="@role.Id" method="post">
+                    <button type="submit" class="btn btn-sm btn-danger">
+                        Sil
+                    </button>
+                </form>
+            </td>*@
+        </tr>
+    }
+</table>
+</section>

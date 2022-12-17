@@ -12,7 +12,7 @@ namespace Shoppinglist_BusinessLayer.ValidationRules.UserValidator
     {
         public UserSignInValidator()
         {
-            RuleFor(x => x.UserName).NotEmpty().WithMessage("Lütfen kullanıcı adı değerini boş geçmeyin");
+            RuleFor(x => x.Email).NotEmpty().WithMessage("Lütfen Email alanını boş geçmeyin");
             RuleFor(x => x.Password).NotEmpty().WithMessage("Lütfen şifre alanını boş geçmeyin");
         }
     }

@@ -1,0 +1,34 @@
+﻿@model string
+@{
+    ViewData["Title"] = "Create Role";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Yeni Rol Ekle</h1>
+                </div>
+                <div class="col-sm-6">
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <section class="content p-2">
+
+        <div class="col-6">
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <form asp-action="Create" method="post">
+                <div class="form-group">
+                    <label for="name">Rol Ad:</label>
+                    <input name="name" class="form-control" />
+                </div>
+                <button type="submit" class="btn btn-primary">Ekle</button>
+            </form>
+        </div>
+
+    </section>
+</div>

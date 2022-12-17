@@ -13,6 +13,7 @@ using System.Xml.Linq;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ShoppingList_UI.Models;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,9 +24,16 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddControllersWithViews();
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddScoped<IValidator<UserSignUpDto>, UserSignUpValidator>();
+builder.Services.AddAuthentication();
 
 builder.Services.AddDbContext<Context>();
 builder.Services.AddIdentity<AppUser, AppRole>().AddErrorDescriber<CustomIdentityValidator>().AddEntityFrameworkStores<Context>();
+
+builder.Services.ConfigureApplicationCookie(opts =>
+{
+    opts.LoginPath = "/login/Index";
+    opts.AccessDeniedPath = "/Account/AccessDenied";
+});
 
 var app = builder.Build();
 
@@ -37,9 +45,8 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
