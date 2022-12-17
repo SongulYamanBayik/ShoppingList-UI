@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DTO.DTOs.ProductDTOs;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Shoppinglist_BusinessLayer.Concrete;
@@ -12,6 +13,7 @@ using Shoppinglist_EntityLayer.Concrete;
 
 namespace ShoppingList_UI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProductController : Controller
     {
         private readonly IMapper _mapper;

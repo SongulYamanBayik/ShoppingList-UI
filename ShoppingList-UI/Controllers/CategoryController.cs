@@ -1,4 +1,5 @@
 ﻿using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shoppinglist_BusinessLayer.Concrete;
 using Shoppinglist_BusinessLayer.ValidationRules.CategoryValidator;
@@ -8,6 +9,7 @@ using Shoppinglist_EntityLayer.Concrete;
 
 namespace ShoppingList_UI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
         CategoryManager categoryManager = new CategoryManager(new EFCategoryDal());

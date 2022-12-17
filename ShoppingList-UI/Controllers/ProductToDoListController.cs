@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DTO.DTOs.ProductToDoListDTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shoppinglist_BusinessLayer.Concrete;
 using Shoppinglist_DAL.Abstract;
@@ -9,6 +10,7 @@ using Shoppinglist_EntityLayer.Concrete;
 
 namespace ShoppingList_UI.Controllers
 {
+    [Authorize]
     public class ProductToDoListController : Controller
     {
        

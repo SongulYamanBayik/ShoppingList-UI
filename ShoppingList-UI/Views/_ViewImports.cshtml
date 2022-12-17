@@ -1,6 +1,10 @@
 ﻿@using ShoppingList_UI
 @using ShoppingList_UI.Models
 @using Microsoft.AspNetCore.Identity
+@using Shoppinglist_EntityLayer.Concrete;
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
 
 @addTagHelper Identity.CustomTagHelpers.*, Identity
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

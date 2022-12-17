@@ -167,7 +167,10 @@
         </div>*@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-user"></i></a>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+            @if (SignInManager.IsSignedIn(User))
+                        {
+                            <a href="#" class="d-block">Hello <b>@UserManager.GetUserName(User)</b></a>
+                        }
         </div>
       </div>
 
