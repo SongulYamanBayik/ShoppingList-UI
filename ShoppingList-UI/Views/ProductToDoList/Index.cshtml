@@ -3,6 +3,7 @@
     ViewData["Title"] = "Liste Detay";
     Layout = "~/Views/Shared/_LayoutUserPage.cshtml";
 }
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Buradasın -->
 <div class="col-10">
 <section class="content" style="min-height: 680px;">
@@ -18,7 +19,7 @@
                             <h3 class="profile-username text-center">@todolist.Name</h3>
 
                         }
-                        <ul class="list-group list-group-unbordered mb-3">
+                        <ul class="list-group list-group-unbordered mb-3" id="sepet">
                             @foreach (var item in Model.selectedListItems)
                             {
                                 <li class="list-group-item">
@@ -64,7 +65,7 @@
 
                                                 <div class="card-body pt-0">
                                                     <div class="row">
-                                                        <div class="col-12">
+                                                        <div class="col-12" id="@product.ID" >
                                                             <h2 class="lead"><b>@product.Name</b></h2>
 
                                                             <img src="@product.ImageUrl" alt="" class="img-circle img-fluid" style="height=" 250px";width="250px" ;">
@@ -77,7 +78,7 @@
 
                                                     <div class="row">
                                                        
-                                                        <a href="@*/Product/EditProduct/@item.ID*@" class="btn btn-sm btn-primary m-1">
+                                                        <a  class="btn btn-sm btn-primary m-1" onclick="AddProductToDoList(@product.ID)">
                                                             Ekle
                                                         </a>
                                                     </div>
@@ -103,3 +104,60 @@
     </div><!-- /.container-fluid -->
 </section>
 </div>
+
+<script>
+
+    function AddProductToDoList(productID) {
+       
+        var productName = document.getElementById(productID).innerText;
+        var promise = setDescription();
+
+        promise.then(function(description) {
+
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "Get",
+                url: "/ProductToDoList/AddProductToDoList/",
+                data: {
+                    productID: productID,
+                    toDoListID: @Model.toDoListID,
+                    description: description
+                },
+                success: function (data) {
+                    document.getElementById("sepet").insertAdjacentHTML("beforeend",
+                        "<li class='list-group-item'><b>" + productName + "</b> <a class='float-right'>" + description + "</a ></li>");
+
+                    Swal.fire({
+                        position: 'top-center',
+                        icon: 'success',
+                        title: 'Ürün listeye eklendi',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                    //setTimeout(() => { location.reload(true) }, 2500);
+                }
+            });
+        });
+    }
+
+    function setDescription()
+    {
+        return new Promise((resolve, reject) => {
+        Swal.fire({
+            title: 'Submit your Github username',
+            input: 'text',
+            inputAttributes: {
+                autocapitalize: 'off'
+            },
+            showCancelButton: true,
+            confirmButtonText: 'Look up',
+            showLoaderOnConfirm: true,
+            preConfirm: (login) => {
+                return resolve(login)
+            }
+        })
+        })
+    }
+</script>
+

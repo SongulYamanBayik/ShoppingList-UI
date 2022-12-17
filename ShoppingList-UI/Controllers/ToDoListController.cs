@@ -54,6 +54,7 @@ namespace ShoppingList_UI.Controllers
         {
             var model = toDoListManager.TGetByID(id);
             model.Name = ToDoListName;
+            toDoListManager.TUpdate(model);
             return Json(true);
         }
 

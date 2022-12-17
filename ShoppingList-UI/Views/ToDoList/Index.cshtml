@@ -35,7 +35,7 @@
             <div class="card-header">
                 <h3 class="card-title">@item.Name</h3>
                 @*<a onclick="showUpdateToDoListModel(id,ToDoListName)">*@
-                <a href="/ToDoList/EditToDoList/@item.ID" class="btn btn-tool">
+                <a  class="btn btn-tool"onclick="showUpdateToDoListModel(@item.ID,'@item.Name')">
                     <i class="fas fa-pen"></i>
                  </a>
                 
@@ -173,11 +173,12 @@
         })
 
     };
-    function showUpdateToDoListModel(id, ToDoListName) {
+    function showUpdateToDoListModel(id,ToDoListName) {
 
         Swal.fire({
             title: 'Yeni Liste Adı Giriniz',
             input: 'text',
+            inputValue: ToDoListName,
             inputAttributes: {
                 autocapitalize: 'off'
             },
@@ -193,7 +194,7 @@
                     url: "/ToDoList/UpdateToDoList/",
                     data: {
                         id:id,
-                        ToDoListName: ToDoListName,
+                        ToDoListName: login,
                     },
                     success: function (data) {
 
@@ -206,7 +207,7 @@
             if (result.isConfirmed) {
                 Swal.fire({
                     icon: 'success',
-                    title: `Liste ekleme işlemi başarılı.`
+                    title: `Liste Adı güncelleme işlemi başarılı.`
                 })
                 setTimeout(() => { location.reload(true) }, 1000);
             }

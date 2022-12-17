@@ -25,17 +25,26 @@ namespace ShoppingList_UI.Controllers
             {
                 products = productManager.TList(x=> x.Status==true),
                 selectedListItems = productToDoManager.TGetToDoListByListID(x => x.ToDoListID==id),
-                toDoLists=toDoListManager.TList(x=>x.ID==id)
+                toDoLists=toDoListManager.TList(x=>x.ID==id),
+                toDoListID = id
+              
             };
 
             return View(productToDoListDto);
         }
 
-        public PartialViewResult Index2()
+        public IActionResult AddProductToDoList(AddProductToDoListDTO addProductToDoListDTO)
         {
-            var value = productManager.TList();
-            return PartialView(value);
+            ProductToDoList a = new ProductToDoList() {
+                ProductID =addProductToDoListDTO.productID,
+                ToDoListID = addProductToDoListDTO.toDoListID,
+                Description = addProductToDoListDTO.description
+            };
+            productToDoManager.TInsert(a);
+
+            return Json("OK");
         }
+
 
         [HttpGet]
         public IActionResult EditProductToDoList(int id)

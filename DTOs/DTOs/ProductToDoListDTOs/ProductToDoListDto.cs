@@ -12,6 +12,7 @@ namespace DTO.DTOs.ProductToDoListDTOs
         public List<Product> products { get; set; }
         public List<ProductToDoList> selectedListItems { get; set; }
         public List<ToDoList> toDoLists { get; set; }
+        public int toDoListID { get; set; }
 
     }
 }
