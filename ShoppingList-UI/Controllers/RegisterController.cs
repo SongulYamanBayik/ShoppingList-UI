@@ -34,7 +34,7 @@ namespace ShoppingList_UI.Controllers
             {
                 AppUser appUser = new AppUser();
                 appUser.Surname = user.Surname;
-                appUser.Email = user.Mail;
+                appUser.Email = user.email;
                 appUser.Name = user.Name;
                 appUser.UserName = user.UserName;
 
@@ -61,9 +61,6 @@ namespace ShoppingList_UI.Controllers
                 }
             return View();
         }
-        public IActionResult action()
-        {
-            return View();
-        }
+       
     }
 }

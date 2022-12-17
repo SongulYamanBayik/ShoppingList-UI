@@ -36,7 +36,7 @@
                 <form action="/Register/Index/" method="post">
                     <div class="input-group mb-3">
                         <input type="text" id="UserName" asp-for="UserName" class="form-control" placeholder="Kullanıcı Adı">
-                        @*<span asp-validation-for="UserName" class="text-danger"></span>*@
+                      
                         
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -46,7 +46,6 @@
                     </div>
                     <div class="input-group mb-3">
                         <input type="text" id="Name" asp-for="Name" class="form-control" placeholder="Adı">
-                        @*<span asp-validation-for="Name" class="text-danger"></span>*@
                         
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -56,7 +55,6 @@
                     </div>
                     <div class="input-group mb-3">
                         <input type="text" id="Surname" asp-for="Surname" class="form-control" placeholder="Soyadı">
-                        @*<span asp-validation-for="Surname" class="text-danger"></span>*@
 
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -65,8 +63,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="email" asp-for="Mail" id="Mail" class="form-control" placeholder="Mail">
-                        @*<span asp-validation-for="Mail" class="text-danger"></span>*@
+                        <input type="email" asp-for="email" id="Mail" class="form-control" placeholder="Mail">
 
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -76,7 +73,6 @@
                     </div>
                     <div class="input-group mb-3">
                         <input type="text" asp-for="Password" id="Password" class="form-control" placeholder="Şifre">
-                        @*<span asp-validation-for="Password" class="text-danger"></span>*@
 
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -86,7 +82,7 @@
                     </div>
                     <div class="input-group mb-3">
                         <input type="text" asp-for="ConfirmPassword" id="ConfirmPassword" class="form-control" placeholder="Şifre Tekrar">
-                        @*<span asp-validation-for="ConfirmPassword" class="text-danger"></span>*@
+                       
 
                         <div class="input-group-append">
                             <div class="input-group-text">

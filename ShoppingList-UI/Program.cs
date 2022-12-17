@@ -12,6 +12,7 @@ using System;
 using System.Xml.Linq;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using ShoppingList_UI.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,14 +25,7 @@ builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddScoped<IValidator<UserSignUpDto>, UserSignUpValidator>();
 
 builder.Services.AddDbContext<Context>();
-builder.Services.AddIdentity<AppUser, AppRole>(x =>
-{
-    x.Password.RequireUppercase = false;
-    x.Password.RequireNonAlphanumeric = false;
-
-})
-            .AddEntityFrameworkStores<Context>()
-            .AddDefaultTokenProviders();
+builder.Services.AddIdentity<AppUser, AppRole>().AddErrorDescriber<CustomIdentityValidator>().AddEntityFrameworkStores<Context>();
 
 var app = builder.Build();
 

@@ -18,8 +18,8 @@ namespace Shoppinglist_BusinessLayer.ValidationRules.UserValidator
         {
             RuleFor(x => x.Name).NotEmpty().WithMessage("Lütfen ad değerini boş geçmeyin");
             RuleFor(x => x.Surname).NotEmpty().WithMessage("Lütfen soyad değerini boş geçmeyin");
-            RuleFor(x => x.Mail).NotEmpty().WithMessage("Lütfen mail adresini boş geçmeyin");
-            RuleFor(x => x.UserName).NotEmpty().WithMessage("Lütfen kullanıcı adı alanını boş geçmeyin");
+            RuleFor(x => x.email).NotEmpty().WithMessage("Lütfen mail adresini boş geçmeyin");
+            RuleFor(x => x.UserName).NotEmpty().WithMessage("Lütfen kullanıcı adı değerini boş geçmeyin");
             RuleFor(x => x.Password).NotEmpty().WithMessage("Lütfen şifre alanını boş geçmeyin");
             RuleFor(x => x.Password).MinimumLength(8).WithMessage("Şifre en az 8 karakter olmalıdır");
             RuleFor(x => x.ConfirmPassword).NotEmpty().WithMessage("Lütfen şifreyi tekrar giriniz.");
