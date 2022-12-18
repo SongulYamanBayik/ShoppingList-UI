@@ -37,7 +37,7 @@ namespace ShoppingList_UI.Controllers
 
                     if (result.Succeeded)
                     {
-                        System.Security.Claims.ClaimsPrincipal currentUser = this.User;
+
                         var roles = await _userManager.GetRolesAsync(appUser);
                         if (roles.Contains("User"))
                         {
@@ -51,32 +51,12 @@ namespace ShoppingList_UI.Controllers
                 ModelState.AddModelError(nameof(user.Email), "Login Failed: Invalid Email or password");
             }
             return View("Index");
-            //UserSignInValidator validationRules = new UserSignInValidator();
-            //ValidationResult result = validationRules.Validate(user);
-
-
-            //if (ModelState.IsValid)
-            //{
-
-            //    var result1 = await _signInManager.PasswordSignInAsync(user.UserName, user.Password, false, true);
-            //    if (result1.Succeeded)
-            //    {
-
-            //        return RedirectToAction("Index", "Role");
-            //    }
-            //    else
-            //    {
-            //        ModelState.AddModelError("", "Kullanıcı Adı yada Şifre Hatalı");
-            //    }
-            //}
-            //else
-            //{
-            //    foreach (var item in result.Errors)
-            //    {
-            //        ModelState.AddModelError("", item.ErrorMessage);
-            //    }
-            //}
-            //return View();
+            
+        }
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return View("Index");
         }
     }
 }

@@ -11,11 +11,12 @@ namespace ShoppingList_UI.Controllers
     public class RegisterController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<AppRole> _roleManager;
 
-        public RegisterController(UserManager<AppUser> userManager)
+        public RegisterController(UserManager<AppUser> userManager, RoleManager<AppRole> roleManager)
         {
             _userManager = userManager;
-
+            _roleManager = roleManager;
         }
 
         [HttpGet]
@@ -41,7 +42,8 @@ namespace ShoppingList_UI.Controllers
                 var result1= await _userManager.CreateAsync(appUser, user.Password);
                 if (result1.Succeeded)
                 {
-                    return RedirectToAction("Index", "Product");
+                    var res =await _userManager.AddToRoleAsync(appUser, "User");
+                    return RedirectToAction("Index", "Login");
                 }
                 else
                 {

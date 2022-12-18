@@ -25,25 +25,22 @@
 </head>
 <body class="hold-transition login-page">
     <div class="login-box">
-        @*<div class="login-logo">
-            <a href="../../index2.html"><b>Admin</b>LTE</a>
-        </div>*@
-        <!-- /.login-logo -->
+        
         <div class="card">
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Kullanıcı Giriş Formu</p>
 
                 <form action="/Login/Index/" method="post">
                     <div class="input-group mb-3">
-                        <input type="text" id="UserName" asp-for="Email" class="form-control" placeholder="Kullanıcı Adı">
+                        <input type="text" id="Email" asp-for="Email" class="form-control" placeholder="Mail">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-user"></span>
+                                <span class="fas fa-envelope"></span>
                             </div>
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" asp-for="Password" id="Password" class="form-control" placeholder="Şifre">
+                        <input type="password" asp-for="Password" id="Password" class="form-control" placeholder="Şifre">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>

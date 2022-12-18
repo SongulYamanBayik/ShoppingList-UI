@@ -1,0 +1,137 @@
+﻿@model Shoppinglist_EntityLayer.Concrete.ToDoList
+@{
+    ViewData["Title"] = "Shopping";
+    Layout = "~/Views/Shared/_LayoutUserPage.cshtml";
+}
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@{
+    int sayac = 0;
+}
+<div class="col-8">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Kategoriler</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item" placeHolder="Kategori Ekle">
+                            <a href="/Category/AddCategory/" class="nav-link">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <section class="content">
+        <div class="card card-solid">
+            <div class="card-body pb-0">
+                <a class="btn btn-info" onclick="finishShopping()">Alışverişi Bitir</a>
+  
+                <table class="table table-striped projects">
+                    <thead>
+                        <tr>
+                            <th style="width: 1%">
+                                #
+                            </th>
+                            <th style="width: 20%">
+                                Ürün Adı
+                            </th>
+                            <th style="width: 30%">
+                                Ürün Görsel
+                            </th>
+                            <th>
+                                Not
+                            </th>
+                            <th style="width: 30%">
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var prod in Model.ProductToDoLists)
+                        {
+                            sayac++;
+                            <tr id="@prod.ID">
+                                <td>
+                                    @sayac
+                                </td>
+                                <td>
+                                    <a>
+                                        @prod.product.Name
+                                    </a>
+                                   
+                                </td>
+                                <td>
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <img alt="Avatar" class="table-avatar" src="@prod.product.ImageUrl">
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td class="project_progress">
+                                    @prod.Description
+                                </td>
+                                <td class="project-actions text-right">
+                                  
+                                    <a class="btn btn-info btn-sm statusBtn" onclick="deleteCheckedProduct(@prod.ID)">
+                                        <i class="fas fa-minus" ></i>
+                                        
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+                
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+
+    function finishShopping()
+    {
+        $.ajax({
+            contentType: 'application/json; charset=utf-8',
+            dataType: "json",
+            type: "Get",
+            traditional: true,
+            url: "/ToDoList/FinishShopping/",
+            data: {
+                id: @Model.ID,
+            },
+            success: function (data) {
+                document.location.href = '/ToDoList/';
+            }
+        })
+    
+    }
+
+    function deleteCheckedProduct(productID){
+
+        $.ajax({
+            contentType: 'application/json; charset=utf-8',
+            dataType: "json",
+            type: "Get",
+            traditional: true,
+            url: "/ToDoList/DeleteProducInShoppingList/",
+            data: {
+                produtToDoListID: productID,
+            },
+            success: function (data) {
+                const element = document.getElementById(productID);
+                element.remove();
+            }
+        })
+    
+    
+    }
+
+</script>

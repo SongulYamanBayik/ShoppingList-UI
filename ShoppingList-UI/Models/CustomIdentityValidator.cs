@@ -31,22 +31,22 @@ namespace ShoppingList_UI.Models
             };
         }
 
-        //public override IdentityError DuplicateEmail(string email)
-        //{
-        //    return new IdentityError()
-        //    {
-        //        Code = "DuplicateEmail",
-        //        Description = $"{email} zaten sisteme kayıtlı, lütfen farklı bir mail adresi deneyiniz"
-        //    };
-        //}
-        public override IdentityError DuplicateUserName(string userName)
+        public override IdentityError DuplicateEmail(string email)
         {
             return new IdentityError()
             {
-                Code = "DuplicateUserName",
-                Description = $"{userName} zaten sisteme kayıtlı, lütfen farklı bir mail adresi deneyiniz"
+                Code = "DuplicateEmail",
+                Description = $"{email} zaten sisteme kayıtlı, lütfen farklı bir mail adresi deneyiniz"
             };
         }
+        //public override IdentityError DuplicateUserName(string userName)
+        //{
+        //    return new IdentityError()
+        //    {
+        //        Code = "DuplicateUserName",
+        //        Description = $"{userName} zaten sisteme kayıtlı, lütfen farklı bir mail adresi deneyiniz"
+        //    };
+        //}
 
 
 

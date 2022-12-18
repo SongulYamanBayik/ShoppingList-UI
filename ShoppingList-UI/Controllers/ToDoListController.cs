@@ -12,20 +12,23 @@ namespace ShoppingList_UI.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
 
+
         public ToDoListController(UserManager<AppUser> userManager)
         {
             _userManager = userManager;
         }
 
         ToDoListManager toDoListManager = new ToDoListManager(new EFToDoListDal());
-       
+        ProductToDoManager productToDoListManager = new ProductToDoManager(new EFProductToDoListDal());
+
+
         public IActionResult Index()
         {
             var users = _userManager.GetUserAsync(HttpContext.User);
             ViewBag.UserMail = users.Result.Email;
             var userId = users.Result.Id;
             //var ue = _userManager.GetUserIdAsync(users);
-            var value = toDoListManager.TList(x=> x.AppUserID == userId);
+            var value = toDoListManager.TList(x => x.AppUserID == userId);
 
             return View(value);
         }
@@ -56,6 +59,34 @@ namespace ShoppingList_UI.Controllers
             model.Name = ToDoListName;
             toDoListManager.TUpdate(model);
             return Json(true);
+        }
+
+        public IActionResult Shopping(int id)
+        {
+            var toDoList = toDoListManager.TGetByID(id);
+            toDoList.ShoppingStatus = true;
+            toDoListManager.TUpdate(toDoList);
+
+            return View(toDoList);
+        }
+
+        public IActionResult FinishShopping(int id)
+        {
+            var toDoList = toDoListManager.TGetByID(id);
+            toDoList.ShoppingStatus = false;
+            toDoListManager.TUpdate(toDoList);
+
+            return Json("OK");
+        }
+        public IActionResult DeleteProducInShoppingList( int produtToDoListID)
+        {
+
+
+                var value = productToDoListManager.TGetByID(produtToDoListID);
+                productToDoListManager.TDelete(value);
+
+
+            return Json("OK");
         }
 
     }

@@ -1,13 +1,22 @@
 ﻿@model DTO.DTOs.ProductDTOs.ProductUpdateDto
 @{
-    Layout = null;
+    ViewData["Title"] = "AddCategory";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
 }
 
-<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-<link href="~/lib/bootstrap/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
-<link href="~/lib/bootstrap/dist/css/bootstrap.rtl.css" rel="stylesheet" />
-<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
-<!DOCTYPE html>
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Ürün Ekle</h1>
+                </div>
+                <div class="col-sm-6">
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <section class="content p-2">
 <div class="container col-10" style="margin-top:40px">
 
     @using (Html.BeginForm("EditProduct", "Product", FormMethod.Post))
@@ -36,4 +45,6 @@
         <button class="btn btn-info mt-3" type="submit">Kaydet</button>
 
     }
+</div>
+    </section>
 </div>

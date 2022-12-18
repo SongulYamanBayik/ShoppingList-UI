@@ -10,6 +10,7 @@ namespace Shoppinglist_EntityLayer.Concrete
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        public bool ShoppingStatus { get; set; }
 
 
         public int AppUserID { get; set; }
