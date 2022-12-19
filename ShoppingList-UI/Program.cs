@@ -28,6 +28,10 @@ builder.Services.AddAuthentication();
 
 builder.Services.AddDbContext<Context>();
 builder.Services.AddIdentity<AppUser, AppRole>().AddErrorDescriber<CustomIdentityValidator>().AddEntityFrameworkStores<Context>();
+builder.Services.Configure<IdentityOptions>(x =>
+{
+    x.User.RequireUniqueEmail= true;
+});
 
 builder.Services.ConfigureApplicationCookie(opts =>
 {

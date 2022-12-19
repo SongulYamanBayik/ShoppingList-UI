@@ -43,7 +43,7 @@ namespace ShoppingList_UI.Controllers
                         {
                             return Redirect("/TodoList/Index");
                         }
-                        return Redirect("/Role/Index");
+                        return Redirect("/Dashboard/Index");
 
 
                     }

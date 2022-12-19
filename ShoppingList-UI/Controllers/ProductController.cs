@@ -10,6 +10,7 @@ using Shoppinglist_BusinessLayer.ValidationRules.ProductValidator.ProductValidat
 using Shoppinglist_DAL.Concrete;
 using Shoppinglist_DAL.EntityFramework;
 using Shoppinglist_EntityLayer.Concrete;
+using System.Runtime.CompilerServices;
 
 namespace ShoppingList_UI.Controllers
 {
@@ -28,7 +29,7 @@ namespace ShoppingList_UI.Controllers
 
         public IActionResult Index()
         {
-            var values = productManager.TList();
+            var values = productManager.TList(x=>x.Category.Status==true);
             return View(values);
         }
 

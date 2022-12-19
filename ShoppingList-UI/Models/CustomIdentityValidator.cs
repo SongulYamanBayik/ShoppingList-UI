@@ -31,6 +31,16 @@ namespace ShoppingList_UI.Models
             };
         }
 
+        public override IdentityError PasswordRequiresUniqueChars(int uniqueChars)
+        {
+            return new IdentityError()
+            {
+                Code = "PasswordRequiresUniqueChars",
+                Description = "Şifre en az 1 tane özel karakter içermelidir"
+            };
+        }
+      
+
         public override IdentityError DuplicateEmail(string email)
         {
             return new IdentityError()
